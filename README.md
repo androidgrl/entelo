@@ -1,7 +1,9 @@
 This is an email sending app.
 
 Send an email by sending a POST request to:
+```
 https://wt-ef1076c433904629e7e6e8ff788f9711-0.run.webtask.io/email
+```
 
 With a JSON payload of:
 
