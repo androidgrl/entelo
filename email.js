@@ -1,6 +1,6 @@
 const request = require('request');
 
-const formatPostOptions = (context, cb) => {
+const formatPostOptions = (context) => {
   return new Promise (function (fulfill, reject) {
     to = context.body.to;
     subject = context.body.subject;
@@ -29,19 +29,19 @@ const formatPostOptions = (context, cb) => {
       url: 'https://api.sendgrid.com/v3/mail/send'
     };
 
-    fulfill({postOptions: postOptions, cb: cb});
+    fulfill(postOptions);
   });
 };
 
-const postRequest = (hash) => {
+const postRequest = (postOptions) => {
   return new Promise (function (fulfill, reject) {
-    request.post(hash.postOptions, function (err, res, body) {
+    request.post(postOptions, function (err, res, body) {
     });
   });
 };
 
 module.exports = function(context, cb) {
-  formatPostOptions(context, cb)
+  formatPostOptions(context)
     .then(postRequest)
     .then(cb("Email sent"));
 };
