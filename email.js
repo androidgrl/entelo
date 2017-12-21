@@ -34,11 +34,14 @@ const formatPostOptions = (context, cb) => {
 };
 
 const postRequest = (hash) => {
-  request.post(hash.postOptions, function (err, res, body) {
+  return new Promise (function (fulfill, reject) {
+    request.post(hash.postOptions, function (err, res, body) {
+    });
   });
 };
 
 module.exports = function(context, cb) {
   formatPostOptions(context, cb)
-    .then(postRequest);
+    .then(postRequest)
+    .then(cb("Email sent"));
 };
